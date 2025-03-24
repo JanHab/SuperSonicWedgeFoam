@@ -22,19 +22,19 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         25; //10;
+endTime         10;//2; //10;
 
 // deltaT          1; //0.002;
 // adaptive time step
 // In controlDict
-deltaT          1e-2;//1e-8;  // Start very small
+deltaT          1e-3;//1e-8;  // Start very small
 adjustTimeStep  yes;
-maxCo           2000;  // Your target maximum Courant
+maxCo           1;//2000;  // Your target maximum Courant
 maxDeltaT       1;
 
 writeControl    runTime;
 
-writeInterval   10;
+writeInterval   1;
 
 purgeWrite      0;
 

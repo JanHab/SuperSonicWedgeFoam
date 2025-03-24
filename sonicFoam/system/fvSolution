@@ -20,30 +20,30 @@ solvers
     {
         solver          smoothSolver;
         smoother        symGaussSeidel;
-        tolerance       1e-06;
-        relTol          0;
+        tolerance       1e-3;//1e-06;
+        relTol          1e-3;//0;
     }
 
     "(U|e).*"
     {
         $p;
         tolerance       1e-05;
-        relTol          0;
+        relTol          1e-3;//0;
     }
 
     "rho.*"
     {
         solver          PCG;
         preconditioner  DIC;
-        tolerance       1e-05;
-        relTol          0;
+        tolerance       1e-3;//1e-05;
+        relTol          1e-3;//0;
     }
 }
 
 PIMPLE
 {
-    nOuterCorrectors 2;
-    nCorrectors      2;
+    nOuterCorrectors 1; // how often the pressure is coupled back to the momentum equation
+    nCorrectors      1; // how often the pressure correction is calculated
     nNonOrthogonalCorrectors 1;
 
     // Add these for high Courant number cases
@@ -51,8 +51,21 @@ PIMPLE
     transonic           yes;    // Important for supersonic flow
 
     // Optional: Consider adding these for more stability
-    // consisten        yes;
+    // consistent        yes;
     // nOuterIterations 2;
+    residualControl
+    {
+        U
+        {
+            tolerance       1e-03;
+            relTol          0;
+        }
+        p 
+        {
+            tolerance       5e-04;
+            relTol          0;
+        }
+    }
 }
 
 // Add stronger relaxation
@@ -65,7 +78,7 @@ relaxationFactors
     }
     equations
     {
-        U               0.5;
+        U               0.5;//0.5;
         e               0.5;
         "(k|epsilon|omega)" 0.5;
     }

@@ -24,8 +24,8 @@ FoamFile
 (interface1interface20Side0Zone
 {
     type            faceZone;
-    faceLabels      List<label> 10(19 39 59 79 99 119 139 159 179 189);
-    flipMap         List<bool> 10{0};
+    faceLabels      List<label> 5(9 19 29 39 44);
+    flipMap         List<bool> 5{0};
 }
 )
 
