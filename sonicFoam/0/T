@@ -14,16 +14,23 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+/*
+Inflow temperature:
+300K
+*/
+
+T   300;
+
 dimensions      [0 0 0 1 0 0 0];
 
-internalField   uniform 300;
+internalField   uniform $T;
 
 boundaryField
 {
     inlet
     {
         type            fixedValue;
-        value           uniform 300;
+        value           uniform $T;
     }
 
     sym
@@ -54,8 +61,8 @@ boundaryField
     outlet
     {
         type            inletOutlet;
-        inletValue      uniform 300;
-        value           uniform 300;
+        inletValue      uniform $T;
+        value           uniform $T;
     }
 }
 

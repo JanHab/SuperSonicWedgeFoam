@@ -14,16 +14,27 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+/* 
+Mach number = 2
+M = u / c
+c: speed of sound
+c = 346.13 m/s for air at 25°C
+u = 2 * 346.13 = 692.26 m/s
+*/ 
+
+// u   692.26;
+u   1200;
+
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (1041.263 0 0);
+internalField   uniform ($u 0 0);
 
 boundaryField
 {
     inlet
     {
         type            fixedValue;
-        value           uniform (1041.263 0 0);
+        value           uniform ($u 0 0);
     }
 
     sym
@@ -54,8 +65,8 @@ boundaryField
     outlet
     {
         type            inletOutlet;
-        inletValue      uniform (1041.263 0 0);
-        value           uniform (1041.263 0 0);
+        inletValue      uniform ($u 0 0);
+        value           uniform ($u 0 0);
     }
 }
 

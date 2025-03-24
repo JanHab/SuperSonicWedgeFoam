@@ -14,16 +14,22 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+/*
+Inflow pressure:
+9.80e+4 = 98000 Pa
+*/
+p 98000;
+
 dimensions      [1 -1 -2 0 0 0 0];
 
-internalField   uniform 101325;
+internalField   uniform $p;
 
 boundaryField
 {
     inlet
     {
         type            fixedValue;
-        value           uniform 101325;
+        value           uniform $p;
     }
 
     sym
