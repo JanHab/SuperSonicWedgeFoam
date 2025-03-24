@@ -43,9 +43,32 @@ solvers
 PIMPLE
 {
     nOuterCorrectors 2;
-    nCorrectors      1;
-    nNonOrthogonalCorrectors 0;
+    nCorrectors      2;
+    nNonOrthogonalCorrectors 1;
+
+    // Add these for high Courant number cases
+    momentumPredictor   yes;
+    transonic           yes;    // Important for supersonic flow
+
+    // Optional: Consider adding these for more stability
+    // consisten        yes;
+    // nOuterIterations 2;
 }
 
+// Add stronger relaxation
+relaxationFactors
+{
+    fields
+    {
+        p               0.3;
+        rho             0.3;
+    }
+    equations
+    {
+        U               0.5;
+        e               0.5;
+        "(k|epsilon|omega)" 0.5;
+    }
+}
 
 // ************************************************************************* //
