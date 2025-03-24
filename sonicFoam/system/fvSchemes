@@ -16,7 +16,10 @@ FoamFile
 
 ddtSchemes
 {
-    default         Euler;
+    // default         Euler;
+    default         CrankNicolson 0.5;
+    // default         backward;
+    // default        steadyState; // Steady state
 }
 
 gradSchemes
@@ -38,7 +41,8 @@ divSchemes
 
 laplacianSchemes
 {
-    default         Gauss linear corrected;
+    default         Gauss linear corrected;//Gauss linear corrected;
+    // default             Gauss linear; // improve speed
 }
 
 interpolationSchemes

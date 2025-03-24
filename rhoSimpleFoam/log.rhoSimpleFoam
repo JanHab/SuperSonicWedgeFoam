@@ -1,0 +1,94 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2412                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _8dbc61e11c-20241220 OPENFOAM=2412 version=v2412
+Arch   : "LSB;label=32;scalar=64"
+Exec   : rhoSimpleFoam
+Date   : Mar 24 2025
+Time   : 16:54:30
+Host   : MacBook-Air-von-Jan-2.local
+PID    : 4141
+I/O    : uncollated
+Case   : /Users/janhabscheid/Documents/git/cfd_project/rhoSimpleFoam
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+SIMPLE: no convergence criteria found. Calculations will run for 10 steps.
+
+Reading thermophysical properties
+
+Selecting thermodynamics package 
+{
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleInternalEnergy;
+}
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Creating turbulence model
+
+Selecting turbulence model type laminar
+Selecting laminar stress model Stokes
+No MRF models present
+
+No finite volume options present
+
+Starting time loop
+
+Time = 1
+
+smoothSolver:  Solving for Ux, Initial residual = 1, Final residual = 1.50547e-07, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 1, Final residual = 0.00419484, No Iterations 1
+smoothSolver:  Solving for e, Initial residual = 1, Final residual = 2.85711e-07, No Iterations 1
+GAMG:  Solving for p, Initial residual = 1, Final residual = 0.0093623, No Iterations 8
+time step continuity errors : sum local = 1.83428, global = -0.366249, cumulative = -0.366249
+ExecutionTime = 0.02 s  ClockTime = 0 s
+
+    functionObjects::MachNo Ma writing field: Ma
+Time = 2
+
+smoothSolver:  Solving for Ux, Initial residual = 0.875459, Final residual = 0.00650843, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.650139, Final residual = 0.0060771, No Iterations 1
+smoothSolver:  Solving for e, Initial residual = 0.657337, Final residual = 0.00217356, No Iterations 1
+GAMG:  Solving for p, Initial residual = 0.329324, Final residual = 0.00261532, No Iterations 8
+time step continuity errors : sum local = 35.4604, global = 6.86336, cumulative = 6.49711
+ExecutionTime = 0.03 s  ClockTime = 0 s
+
+    functionObjects::MachNo Ma writing field: Ma
+Time = 3
+
+smoothSolver:  Solving for Ux, Initial residual = 0.182028, Final residual = 0.000128186, No Iterations 1
+smoothSolver:  Solving for Uy, Initial residual = 0.0252789, Final residual = 0.000166622, No Iterations 1
+smoothSolver:  Solving for e, Initial residual = 0.943998, Final residual = 0.000638176, No Iterations 1
+[stack trace]
+=============
+#1  Foam::sigFpe::sigHandler(int) in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libOpenFOAM.dylib
+#2  _sigtramp in /usr/lib/system/libsystem_platform.dylib
+#3  Foam::PCG::scalarSolve(Foam::Field<double>&, Foam::Field<double> const&, unsigned char) const in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libOpenFOAM.dylib
+#4  Foam::GAMGSolver::solveCoarsestLevel(Foam::Field<double>&, Foam::Field<double> const&) const in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libOpenFOAM.dylib
+#5  Foam::GAMGSolver::Vcycle(Foam::PtrList<Foam::lduMatrix::smoother> const&, Foam::Field<double>&, Foam::Field<double> const&, Foam::Field<double>&, Foam::Field<double>&, Foam::Field<double>&, Foam::Field<double>&, Foam::Field<double>&, Foam::PtrList<Foam::Field<double>>&, Foam::PtrList<Foam::Field<double>>&, unsigned char) const in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libOpenFOAM.dylib
+#6  Foam::GAMGSolver::solve(Foam::Field<double>&, Foam::Field<double> const&, unsigned char) const in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libOpenFOAM.dylib
+#7  Foam::fvMatrix<double>::solveSegregated(Foam::dictionary const&) in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libfiniteVolume.dylib
+#8  Foam::fvMatrix<double>::solveSegregatedOrCoupled(Foam::dictionary const&) in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/lib/libfiniteVolume.dylib
+#9  main in /Volumes/OpenFOAM-v2412/platforms/darwin64ClangDPInt32Opt/bin/rhoSimpleFoam
+#10  start in /usr/lib/dyld
+=============
