@@ -24,7 +24,7 @@ zmax  1;
 xmin1  0.5;
 xmax1  1.5;
 ymin1  0;
-yangle 0.364;	//20 deg
+yangle 0.546;//0.364;	//20 deg
 ymax1  1.26;
 zmin1  0;
 zmax1  1;
