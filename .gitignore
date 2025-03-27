@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# OpenFOAM solution folders (excluding 0)
+*/[0-9]*
+*!/0/
