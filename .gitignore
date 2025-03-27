@@ -27,3 +27,7 @@ log.*
 # OpenFOAM solution folders (excluding 0)
 */[0-9]*
 *!/0/
+
+# README html versions from quarto
+*README_files*
+README.html
