@@ -27,50 +27,52 @@ solvers
         nPreSweeps      0;
         nPostSweeps     2;
         cacheAgglomeration true;
-        tolerance       1e-3;
-        relTol          1e-1;
+        tolerance       1e-4;
+        relTol          1e-4;
     }
 
     "(U|e).*"
     {
         $p;
         tolerance       1e-5;
-        relTol          1e-3;
+        relTol          1e-4;
     }
 
     "rho.*"
     {
         solver          PCG;
         preconditioner  AMG;//AMG; //DIC;
-        tolerance       1e-3;//1e-05;
-        relTol          1e-3;//0;
+        tolerance       1e-4;//1e-05;
+        relTol          1e-4;//0;
     }
 }
 
 PIMPLE
 {
-    nOuterCorrectors 1; // how often the pressure is coupled back to the momentum equation
-    nCorrectors      1; // how often the pressure correction is calculated
-    nNonOrthogonalCorrectors 0; // 1 // how often the non-orthogonal correction is calculated
+    nOuterCorrectors 2;//1; // how often the pressure is coupled back to the momentum equation
+    nCorrectors      2;//1; // how often the pressure correction is calculated
+    nNonOrthogonalCorrectors 1;//0; // 1 // how often the non-orthogonal correction is calculated
 
     // Add these for high Courant number cases, not important for supersonic
-    momentumPredictor   no;//yes;
-    transonic           no;//yes;    // Important for supersonic flow
+    momentumPredictor   yes;//no;//yes;
+    transonic           yes;//no;//yes;    // Important for supersonic flow
 
     // Optional: Consider adding these for more stability
     // consistent        yes;
+    consistent        yes;
     // nOuterIterations 2;
+    nOuterIterations 2;
     residualControl
     {
         U
         {
-            tolerance       1e-03;
-            relTol          1e-3;//0;
+            tolerance       1e-0;
+            relTol          1e-4;//0;
         }
         p 
         {
-            tolerance       1e-3;//5e-04;
-            relTol          1e-3;//0;
+            tolerance       1e-4;//5e-04;
+            relTol          1e-4;//0;
         }
     }
 }

@@ -99,7 +99,8 @@ boundary
 
     sym
     {
-	type patch;
+	//type patch;
+    type symmetry;
         faces ((1 5 4 0));
     }
 

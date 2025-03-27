@@ -34,17 +34,22 @@ boundaryField
 
     sym
     {
-        type            slip;
+        type            symmetry;
+        // type            slip;
     }
 
     wedge
     {
-        type            slip;
+        type            zeroGradient;
+        // type            slip;
     }
 
     top
     {
-        type            slip;
+        type            zeroGradient;
+        // type            freestreamPressure;
+        // freestreamValue uniform $p;
+        // type            slip;
     }
 
     back

@@ -38,17 +38,23 @@ boundaryField
 
     sym
     {
-        type            slip;
+        type            symmetry;
+        // type            slip;
     }
 
     wedge
     {
-        type            slip;
+        type            slip; // as viscous wall
+        // type            noSlip;
     }
 
     top
     {
-        type            slip;
+        // type            empty;
+        type            zeroGradient;
+        // type            freestream;
+        // freestreamValue uniform ($u 0 0);
+        // type            slip;
     }
 
     back
@@ -63,9 +69,10 @@ boundaryField
 
     outlet
     {
-        type            inletOutlet;
-        inletValue      uniform ($u 0 0);
-        value           uniform ($u 0 0);
+        type           zeroGradient;    
+        // type            inletOutlet;
+        // inletValue      uniform ($u 0 0);
+        // value           uniform ($u 0 0);
     }
 }
 

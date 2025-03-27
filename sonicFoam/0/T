@@ -35,17 +35,21 @@ boundaryField
 
     sym
     {
-        type            slip;
+        type            symmetry;
     }
 
     wedge
     {
-        type            slip;
+        // type            slip;
+        type            zeroGradient;
     }
 
     top
     {
-        type            slip;
+        type            zeroGradient;
+        // type            freestream;
+        // freestreamValue uniform $T;
+        // type            slip;
     }
 
     back
@@ -60,9 +64,10 @@ boundaryField
 
     outlet
     {
-        type            inletOutlet;
-        inletValue      uniform $T;
-        value           uniform $T;
+        type            zeroGradient;
+        // type            inletOutlet;
+        // inletValue      uniform $T;
+        // value           uniform $T;
     }
 }
 

@@ -26,7 +26,8 @@ FoamFile
     }
     sym
     {
-        type            patch;
+        type            symmetry;
+        inGroups        1(symmetry);
         nFaces          300;
         startFace       359400;
     }
