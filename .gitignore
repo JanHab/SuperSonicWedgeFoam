@@ -1,30 +1,23 @@
-# Prerequisites
-*.d
+# copied from: https://www.toptal.com/developers/gitignore/api/openfoam
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Created by https://www.toptal.com/developers/gitignore/api/openfoam
+# Edit at https://www.toptal.com/developers/gitignore?templates=openfoam
 
-# Precompiled Headers
-*.gch
-*.pch
+### OpenFOAM ###
+# Timestep directories
+0.*
+[1-9]*
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Fields that must get ignored
+*/phi*
+*/meshPhi*
 
-# Fortran module files
-*.mod
-*.smod
+# Decomposed domain
+processor*
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# logfiles
+log.*
+*log
 
 # Executables
 *.exe
