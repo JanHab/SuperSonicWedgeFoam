@@ -27,13 +27,13 @@ xmin1  0.5;
 xmax1  1.5;
 ymin1  0;
 // yangle 
-//yangle   0.091;// =5 deg
-//yangle   0.182;// =10 deg
-yangle   0.273;// =15 deg
-//yangle  0.364;// =20 deg
-//yangle   0.455;// =25 deg
-//yangle   0.546;// =30 deg
-//yangle   0.707;// =45 deg
+//yangle    0.091;// =5 deg
+//yangle    0.182;// =10 deg
+//yangle  0.273;// =15 deg
+//yangle    0.364;// =20 deg
+yangle    0.455;// =25 deg
+//yangle    0.546;// =30 deg
+//yangle    0.707;// =45 deg
 ymax1  1.26;
 zmin1  0;
 zmax1  1;
@@ -43,12 +43,12 @@ zmax1  1;
 zcells 1;
 
 //For block 1
-xcells 300;
-ycells 300;
+xcells 50;
+ycells 100;
 
 //For block 2
-xcells1 300;
-ycells1 300;
+xcells1 100;
+ycells1 100;
 
 vertices        
 (

@@ -42,7 +42,8 @@ mixture
     }
     transport
     {
-        mu              1.81e-5; //zero for inviscid, can cause problems0;
+        // mu              1.81e-5; //zero for inviscid, can cause problems0;
+        mu              0;
         Pr              0.713;
 
         As              1.4792e-06;

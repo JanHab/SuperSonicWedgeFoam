@@ -40,8 +40,8 @@ boundaryField
 
     wedge
     {
-        // type            slip;
-        type            zeroGradient;
+        type            slip;
+        // type            zeroGradient;
     }
 
     top
@@ -64,10 +64,12 @@ boundaryField
 
     outlet
     {
-        type            zeroGradient;
-        // type            inletOutlet;
-        // inletValue      uniform $T;
+        // type            zeroGradient;
+        type            inletOutlet;
+        // inletValue      uniform ($T 0 0);
         // value           uniform $T;
+        inletValue      uniform $T;
+        value           uniform $T;
     }
 }
 

@@ -64,7 +64,10 @@ boundaryField
 
     outlet
     {
-        type            zeroGradient;
+        // type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform $p;
+        value           uniform $p;
     }
 }
 

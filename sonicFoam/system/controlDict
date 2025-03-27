@@ -22,7 +22,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.0025; // ! for now 0.005;
+endTime         0.01; // ! for now 0.005;
 // adaptive time step
 deltaT          1e-5;//very small
 //deltaT          1e-6;//very small
@@ -32,7 +32,7 @@ maxDeltaT       1;
 
 writeControl    runTime;
 
-writeInterval   0.0005;
+writeInterval   0.0001;
 
 purgeWrite      0;
 
@@ -52,12 +52,12 @@ functions
 {
     libs            (fieldFunctionObjects);
 
-    Ma
-    {
-        type            MachNo;
-        executeControl  writeTime;
-        writeControl    writeTime;
-    }
+    // Ma
+    // {
+    //     type            MachNo;
+    //     executeControl  writeTime;
+    //     writeControl    writeTime;
+    // }
 }
 
 
