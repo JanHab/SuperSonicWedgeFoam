@@ -41,22 +41,18 @@ boundaryField
     sym
     {
         type            symmetry;
-        // type            slip;
     }
 
     wedge
     {
         type            slip; // as viscous wall
-        // type            noSlip;
     }
 
     top
     {
-        type            slip;
-        // type            zeroGradient;
-        // type            freestream;
-        // freestreamValue uniform ($u 0 0);
-        // type            slip;
+        // freeStream to make it converge towards the stationary solution
+        type            freestream;
+        freestreamValue uniform ($u 0 0);
     }
 
     back
@@ -70,8 +66,7 @@ boundaryField
     }
 
     outlet
-    {
-        // type           zeroGradient;    
+    { 
         type            inletOutlet;
         inletValue      uniform ($u 0 0);
         value           uniform ($u 0 0);

@@ -40,16 +40,14 @@ boundaryField
 
     wedge
     {
-        type            slip;
-        // type            zeroGradient;
+        type            zeroGradient;//slip;
     }
 
     top
     {
-        type            zeroGradient;
-        // type            freestream;
-        // freestreamValue uniform $T;
-        // type            slip;
+        // freeStream to make it converge towards the stationary solution
+        type            freestream;
+        freestreamValue uniform $T;
     }
 
     back
@@ -64,10 +62,7 @@ boundaryField
 
     outlet
     {
-        // type            zeroGradient;
         type            inletOutlet;
-        // inletValue      uniform ($T 0 0);
-        // value           uniform $T;
         inletValue      uniform $T;
         value           uniform $T;
     }

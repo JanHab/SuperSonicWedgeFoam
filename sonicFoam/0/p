@@ -35,21 +35,18 @@ boundaryField
     sym
     {
         type            symmetry;
-        // type            slip;
     }
 
     wedge
     {
         type            zeroGradient;
-        // type            slip;
     }
 
     top
     {
-        type            zeroGradient;
-        // type            freestreamPressure;
-        // freestreamValue uniform $p;
-        // type            slip;
+        // freeStream to make it converge towards the stationary solution
+        type            freestreamPressure;
+        freestreamValue uniform $p;
     }
 
     back
@@ -64,7 +61,6 @@ boundaryField
 
     outlet
     {
-        // type            zeroGradient;
         type            inletOutlet;
         inletValue      uniform $p;
         value           uniform $p;
