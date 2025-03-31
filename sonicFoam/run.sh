@@ -4,9 +4,13 @@
 foamListTimes -rm
 
 # Define input parameters
-yangle=0.091
-num_xcells=100
-num_ycells=50
+# yangle=0.091
+# num_xcells=100
+# num_ycells=50
+# Read command-line arguments
+yangle=$1
+num_xcells=$2
+num_ycells=$3
 
 # Run OpenFOAM's blockMesh with parameters
 yangle=$yangle num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh

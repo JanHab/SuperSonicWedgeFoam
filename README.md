@@ -30,7 +30,7 @@ $$
 
 ```bash
 chmod +x run.sh
-./run.sh
+./run.sh <angle> <number_xcells> <number_ycells>
 ```
 
 ## Git CheatSheet
