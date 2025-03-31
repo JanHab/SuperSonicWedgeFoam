@@ -21,47 +21,47 @@ FoamFile
     inlet
     {
         type            patch;
-        nFaces          5;
-        startFace       85;
+        nFaces          50;
+        startFace       9850;
     }
     sym
     {
         type            symmetry;
         inGroups        1(symmetry);
-        nFaces          3;
-        startFace       90;
+        nFaces          33;
+        startFace       9900;
     }
     wedge
     {
         type            patch;
-        nFaces          7;
-        startFace       93;
+        nFaces          67;
+        startFace       9933;
     }
     top
     {
         type            patch;
-        nFaces          10;
-        startFace       100;
+        nFaces          100;
+        startFace       10000;
     }
     back
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          50;
-        startFace       110;
+        nFaces          5000;
+        startFace       10100;
     }
     front
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          50;
-        startFace       160;
+        nFaces          5000;
+        startFace       15100;
     }
     outlet
     {
         type            patch;
-        nFaces          5;
-        startFace       210;
+        nFaces          50;
+        startFace       20100;
     }
 )
 

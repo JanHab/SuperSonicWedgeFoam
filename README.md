@@ -26,6 +26,13 @@ $$
 - [Presentation: Supersonic flow past a wedge](https://www.wolfdynamics.com/wiki/tut_2D_supersonic_wedge.pdf)
 - [Tutorial: Supersonic flow past a wedge](https://www.wolfdynamics.com/tutorials.html?id=130)
 
+## Running Script
+
+```bash
+chmod +x run.sh
+./run.sh
+```
+
 ## Git CheatSheet
 
 To add file/changes of file to git. Replace file with a dot (.) to add all changes
