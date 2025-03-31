@@ -19,36 +19,47 @@ scale 1;
 xmin  0;
 xmax  0.5;
 ymin  0;
-ymax  1.7;//1.26;
+ymax  1.7;
 zmin  0;
 zmax  1;
 
 xmin1  0.5;
 xmax1  1.5;
 ymin1  0;
+ymax1  1.7;
+zmin1  0;
+zmax1  1;
+
 // yangle 
+yangle    ${yangle};
 //yangle    0.091;// =5 deg
 //yangle    0.182;// =10 deg
 //yangle  0.273;// =15 deg
 //yangle    0.364;// =20 deg
 //yangle    0.455;// =25 deg
-yangle    0.546;// =30 deg
+//yangle    0.546;// =30 deg
 //yangle    0.707;// =45 deg
-ymax1  1.7;//1.26;
-zmin1  0;
-zmax1  1;
 
-//xcells 10;
-//ycells 10;
+// Number of cells
+num_xcells ${num_xcells};
+num_ycells ${num_ycells};
+
+// Compute total domain length
+xlength #eval "$xmax1 - $xmin";
+
+// Compute cell fractions
+fraction1 #eval "($xmax - $xmin) / $xlength";
+fraction2 #eval "($xmax1 - $xmin1) / $xlength";
+
+// Compute number of x-cells per block
+xcells  #eval "round($fraction1 * $num_xcells)";
+xcells1 #eval "round($fraction2 * $num_xcells)";
+
+// Compute number of y-cells
+ycells  #eval "$num_ycells * ($ymax - $ymin) / $ymax";
+ycells1 #eval "$num_ycells * ($ymax1 - $ymin1) / $ymax";
+
 zcells 1;
-
-//For block 1
-xcells 50;
-ycells 100;
-
-//For block 2
-xcells1 100;
-ycells1 100;
 
 vertices        
 (
