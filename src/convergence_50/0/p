@@ -1,0 +1,71 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+/*
+Inflow pressure:
+101325 Pa
+*/
+p 101325;
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform $p;
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform $p;
+    }
+
+    sym
+    {
+        type            symmetry;
+    }
+
+    wedge
+    {
+        type            zeroGradient;
+    }
+
+    top
+    {
+        // freeStream to make it converge towards the stationary solution
+        type            freestreamPressure;
+        freestreamValue uniform $p;
+    }
+
+    back
+    {
+        type            empty;
+    }
+
+    front
+    {
+        type            empty;
+    }
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      uniform $p;
+        value           uniform $p;
+    }
+}
+
+
+// ************************************************************************* //
