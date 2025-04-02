@@ -57,15 +57,25 @@ functions
         executeControl  writeTime;
         writeControl    writeTime;
     }
-    rho
+    // rho
+    // {
+    //     type            volScalarFieldValue;
+    //     field           rho;
+    //     value           1.0;
+    //     executeControl  writeTime;
+    //     writeControl    writeTime;
+    // }
+    rhofunc
     {
-        type            volScalarFieldValue;
-        field           rho;
-        value           1.0;
-        executeControl  writeTime;
-        writeControl    writeTime;
+        type                 writeObjects;
+        libs            ("libutilityFunctionObjects.so");
+        writeControl        timeStep;
+        writeInterval       1;
+        objects
+        ("rho");
     }
 }
+
 
 
 // ************************************************************************* //
