@@ -25,6 +25,7 @@ $$
 - [Supersonic Flow onto Solid Wedges, Multidimensional Shock Waves and Free Boundary Problems](https://arxiv.org/abs/1703.03997)
 - [Presentation: Supersonic flow past a wedge](https://www.wolfdynamics.com/wiki/tut_2D_supersonic_wedge.pdf)
 - [Tutorial: Supersonic flow past a wedge](https://www.wolfdynamics.com/tutorials.html?id=130)
+- [Estimating density, velocity, and pressure fields in supersonic flows using physics-informed BOS](https://link.springer.com/article/10.1007/s00348-022-03554-y)
 
 ## Running Script
 
