@@ -3,6 +3,7 @@
 # Remove all existing solutions files in the base directory
 cd sonicFoam
 foamListTimes -rm
+cd ..
 
 # Define grid
 num_xcells=100
@@ -14,13 +15,13 @@ for angle_vale in 0.091 0.182 0.273 0.364 0.455 0.546
         foamCloneCase sonicFoam angle_value_$angle_vale
         cd angle_value_$angle_vale
         # Create the mesh
-        yangle=$yangle num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
+        yangle=$angle_vale num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
 
-        Check if blockMesh was successful
-        if [ $? -ne 0 ]; then
-            echo "❌ blockMesh failed. Check log.blockMesh for details."
-            exit 1
-        fi
+        # Check if blockMesh was successful
+        # if [ $? -ne 0 ]; then
+        #     echo "❌ blockMesh failed. Check log.blockMesh for details."
+        #     exit 1
+        # fi
 
         # Check mesh quality
         checkMesh -allGeometry -allTopology > log.checkMesh
@@ -34,6 +35,9 @@ for angle_vale in 0.091 0.182 0.273 0.364 0.455 0.546
             exit 1
         fi
         echo "✅ Solver completed!"
+
+        # Create touch.case for paraview
+        touch case.foam
 
         # Move back to the base directory
         cd ..

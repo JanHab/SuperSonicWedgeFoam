@@ -10,12 +10,12 @@ FoamFile
     version     2.0;
     format      ascii;
     arch        "LSB;label=32;scalar=64";
-    class       cellSet;
-    location    "constant/polyMesh/sets";
-    object      twoInternalFacesCells;
+    class       regIOobject;
+    location    "constant/polyMesh";
+    object      pointZones;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-4(0 19999 6832 6633)
+0()
 
 // ************************************************************************* //
