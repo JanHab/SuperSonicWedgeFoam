@@ -7,6 +7,12 @@ Solver: `sonicFoam`
 
 Remove solver files: `foamListTimes -rm`
 
+- To get the density run with post processing
+
+```bash
+sonicFoam -postProcess
+```
+
 ## Tricky
 
 Be careful with the "time-steps"
