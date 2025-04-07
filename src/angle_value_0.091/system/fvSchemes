@@ -25,11 +25,13 @@ ddtSchemes
 gradSchemes
 {
     default         Gauss linear;
+    // default 	     cellLimited<cubic> 1.5 Gauss linear 1;
 }
 
 divSchemes
 {
     default         none;
+    // div(phi,U)      Gauss vanLeerV;
     div(phi,U)      Gauss upwind corrected; //Gauss linearUpwind grad(U); //Gauss upwind;
     div(phid,p)     Gauss upwind;
     div(phi,e)      Gauss upwind;
