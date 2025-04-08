@@ -15,7 +15,14 @@ ToDo: Add some short description
 ## Main Features
 
 - Automatic grid generation for different angles of wedge
-- Easy implementation in openfoam
+- Intuitive implementation in openfoam
+- Easy to use analysis with python
+    - Calls paraview
+    - Cutplots
+    - Lineplots
+    - Comparison to analytical results
+    - Residuals
+    - Grid convergence
 - Script to run different geometries
 - Grid convergence
 - Investigation of residuals
