@@ -1,5 +1,38 @@
-# CFD
-CFD Project
+# SupersonicWedge
+
+Reproducability repository for the course project "Investigate supersonic flow over a wedge with varying angle of attack".
+
+The [OpenFoam](https://www.openfoam.com/) CFD software can be used to reproduce all the results. For the work, version 2406 was used.
+
+## Physical Background
+
+ToDo: Add some short description
+
+- Wedge flow
+- Supersonic (mach number etc.)
+- compressible Navier-Stokes-Fourier
+
+## Main Features
+
+- Automatic grid generation for different angles of wedge
+- Easy implementation in openfoam
+- Script to run different geometries
+- Grid convergence
+- Investigation of residuals
+
+## Contact
+
+- Adrian Elias Haugjord
+- Daniel Eric Offer
+- Jan Habscheid
+
+------------
+------------
+------------
+------------
+------------
+
+# Our Personal Notes -> to be removed
 
 ## Settings
 
