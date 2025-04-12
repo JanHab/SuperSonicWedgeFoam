@@ -17,6 +17,20 @@ FoamFile
 solvers
 {
     "p.*"
+    // {
+    //     solver          smoothSolver;
+    //     smoother        symGaussSeidel;
+    //     preconditioner  AMG;
+    //     tolerance       1e-4;
+    //     relTol          1e-4;
+    //     // solver          GAMG;
+    //     // smoother        GaussSeidel;
+    //     // nPreSweeps      0;
+    //     // nPostSweeps     2;
+    //     // cacheAgglomeration true;
+    //     // tolerance       1e-4;
+    //     // relTol          1e-4;
+    // }
     {
         solver          PBiCGStab;
         preconditioner  DILU;
@@ -24,19 +38,6 @@ solvers
         relTol          0.01;
 	minIter 	2;
     }
-    // {
-    //     // solver          smoothSolver;
-    //     // smoother        symGaussSeidel;
-    //     // tolerance       1e-3;//1e-06;
-    //     // relTol          1e-3;//0;
-    //     solver          GAMG;
-    //     smoother        GaussSeidel;
-    //     nPreSweeps      0;
-    //     nPostSweeps     2;
-    //     cacheAgglomeration true;
-    //     tolerance       1e-4;
-    //     relTol          1e-4;
-    // }
 
     "(U|e).*"
     {
@@ -56,13 +57,13 @@ solvers
 
 // PIMPLE
 // {
-//     nOuterCorrectors 2;//1; // how often the pressure is coupled back to the momentum equation
-//     nCorrectors      2;//1; // how often the pressure correction is calculated
-//     nNonOrthogonalCorrectors 1;//0; // 1 // how often the non-orthogonal correction is calculated
+//     nOuterCorrectors 1;//1; // how often the pressure is coupled back to the momentum equation
+//     nCorrectors      1;//1; // how often the pressure correction is calculated
+//     nNonOrthogonalCorrectors 0;//0; // 1 // how often the non-orthogonal correction is calculated
 
 //     // Add these for high Courant number cases, not important for supersonic
-//     momentumPredictor   yes;//no;//yes;
-//     transonic           yes;//no;//yes;    // Important for supersonic flow
+//     momentumPredictor   no;//no;//yes;
+//     transonic           no;//no;//yes;    // Important for supersonic flow
 
 //     // Optional: Consider adding these for more stability
 //     // consistent        yes;

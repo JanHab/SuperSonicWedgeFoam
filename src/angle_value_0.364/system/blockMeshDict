@@ -17,14 +17,14 @@ FoamFile
 scale 1;
 
 xmin  0;
-xmax  0.5;
+xmax  1.5;
 ymin  0;
 ymax  2.2;//1.7;
 zmin  0;
 zmax  1;
 
-xmin1  0.5;
-xmax1  1.5;
+xmin1  1.5;
+xmax1  2.5;
 ymin1  0;
 ymax1  2.2;//1.7;
 zmin1  0;

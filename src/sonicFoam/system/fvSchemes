@@ -17,9 +17,9 @@ FoamFile
 ddtSchemes
 {
     // default         Euler;
-    default         localEuler;
+    // default         localEuler;
     // default         CrankNicolson 0.5;
-    // default         backward;
+    default         backward;
     // default        steadyState; // Steady state
 }
 
@@ -29,29 +29,29 @@ gradSchemes
     default 	     cellLimited<cubic> 1.5 Gauss linear 1;
 }
 
-// divSchemes
-// {
-//     default         none;
-//     div(phi,U)      Gauss upwind corrected; //Gauss linearUpwind grad(U); //Gauss upwind;
-//     // div(phid,p)     Gauss upwind;
-//     div(phid,U)     Gauss upwind;
-//     div(phi,e)      Gauss upwind;
-//     div(phi,K)      Gauss upwind;
-//     div(phiv,p)     Gauss upwind;
-
-//     div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
-// }
 divSchemes
 {
     default         none;
-    div(phi,U)      Gauss vanLeerV; 
-    div(phid,U)     Gauss linearUpwind default;
-    div(phi,e)      Gauss linearUpwind default;
-    div(phi,K)      Gauss linearUpwind default;
-    div(phiv,p)     Gauss linearUpwind default;
+    div(phi,U)      Gauss upwind corrected; //Gauss linearUpwind grad(U); //Gauss upwind;
+    div(phid,p)     Gauss upwind;
+    div(phid,U)     Gauss upwind;
+    div(phi,e)      Gauss upwind;
+    div(phi,K)      Gauss upwind;
+    div(phiv,p)     Gauss upwind;
 
     div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
 }
+// divSchemes
+// {
+//     default         none;
+//     div(phi,U)      Gauss vanLeerV; 
+//     div(phid,U)     Gauss linearUpwind default;
+//     div(phi,e)      Gauss linearUpwind default;
+//     div(phi,K)      Gauss linearUpwind default;
+//     div(phiv,p)     Gauss linearUpwind default;
+
+//     div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+// }
 
 laplacianSchemes
 {
@@ -61,8 +61,8 @@ laplacianSchemes
 
 interpolationSchemes
 {
-    // default         linear;
-    default         upwind;
+    default         linear;
+    // default         upwind;
 }
 
 snGradSchemes

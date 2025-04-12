@@ -22,16 +22,16 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.05;//0.1;
+endTime         0.1;
 // adaptive time step
-deltaT          1e-4; //1e-5;//very small
-adjustTimeStep  yes;
-maxCo           2000; // Your target maximum Courant
+deltaT          1e-4;
+adjustTimeStep  no;
+maxCo           10; // Your target maximum Courant
 maxDeltaT       1;
 
 writeControl    runTime;
 
-writeInterval   0.0001;
+writeInterval   1e-2;
 
 purgeWrite      0;
 
@@ -61,8 +61,8 @@ functions
     {
         type                 writeObjects;
         libs            ("libutilityFunctionObjects.so");
-        writeControl        timeStep;
-        writeInterval       1;
+        writeControl        writeTime;
+        writeControl       writeTime;
         objects
         ("rho");
     }

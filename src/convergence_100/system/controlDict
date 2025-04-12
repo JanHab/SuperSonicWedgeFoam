@@ -24,14 +24,14 @@ stopAt          endTime;
 
 endTime         0.1;
 // adaptive time step
-deltaT          1e-4; //1e-5;//very small
+deltaT          1e-2; //1e-5;//very small
 adjustTimeStep  yes;
 maxCo           2000; // Your target maximum Courant
 maxDeltaT       1;
 
 writeControl    runTime;
 
-writeInterval   0.0001;
+writeInterval   0.1;
 
 purgeWrite      0;
 
