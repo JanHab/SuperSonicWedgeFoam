@@ -1,0 +1,105 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     sonicFoam;
+
+startFrom       startTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         0.1;
+// adaptive time step
+deltaT          1e-4;
+adjustTimeStep  no;
+maxCo           10; // Your target maximum Courant
+maxDeltaT       1;
+
+writeControl    runTime;
+
+writeInterval   1e-2;
+
+purgeWrite      0;
+
+writeFormat     ascii;
+
+writePrecision  6;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+    libs            (fieldFunctionObjects);
+
+    Ma
+    {
+        type            MachNo;
+        executeControl  writeTime;
+        writeControl    writeTime;
+    }
+    rhofunc
+    {
+        type                 writeObjects;
+        libs            ("libutilityFunctionObjects.so");
+        writeControl        writeTime;
+        writeControl       writeTime;
+        objects
+        ("rho");
+    }
+
+    // Write turbulent kinetic energy (k)
+    writeK
+    {
+        type            writeObjects;
+        writeControl    writeTime;
+        objects         ("k");
+    }
+
+    // Write specific dissipation rate (omega)
+    writeOmega
+    {
+        type            writeObjects;
+        writeControl    writeTime;
+        objects         ("omega");
+    }
+
+    // Write turbulent kinematic viscosity (nut)
+    writeNut
+    {
+        type            writeObjects;
+        writeControl    writeTime;
+        objects         ("nut"); // This is calculated by the turbulence model
+    }
+
+    // Write turbulent thermal diffusivity (alphat)
+    writeAlphat
+    {
+        type            writeObjects;
+        writeControl    writeTime;
+        objects         ("alphat"); // This is calculated by the turbulence model (nut/Prt)
+    }
+}
+
+
+
+// ************************************************************************* //
