@@ -1,0 +1,106 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    "p.*"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-06;
+        relTol          0.01;
+	minIter 	2;
+    }
+
+    "(U|e).*"
+    {
+        $p;
+        tolerance       1e-5;
+        relTol          1e-4;
+    }
+
+    "rho.*"
+    {
+        solver          PCG;
+        preconditioner  AMG;//AMG; //DIC;
+        tolerance       1e-4;//1e-05;
+        relTol          1e-4;//0;
+    }
+    // turbulence
+    "(k|omega)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8;
+        relTol          0.1;
+        minIter         1;
+    }
+    // Add the missing entry for omegaFinal
+        omegaFinal
+    {
+        solver          smoothSolver;   // MUST define solver explicitly
+        smoother        symGaussSeidel; // MUST define smoother explicitly
+        tolerance       1e-8;           // Copied value (can be relaxed, e.g., 1e-5)
+        relTol          0.1;            // Copied value (can be relaxed, e.g., 0.5)
+        minIter         1;              // Copied value
+    }
+
+    // You *might* still need kFinal depending on the exact solver logic.
+    // If you get a similar error for kFinal after this fix, add this block:
+    kFinal
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-8; // Or relax
+        relTol          0.1;  // Or relax
+        minIter         1;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor 		yes;
+    consistent			yes;
+
+    nOuterCorrectors 		2;	//1-2-2
+    nCorrectors    	 	3;	//3-3-2
+    nNonOrthogonalCorrectors 	2;	//1-1-1
+
+    transonic 			yes;
+
+    maxCo             		0.5;		//0.9 (D)
+    rDeltaTSmoothingCoeff 	0.1;		//0.1
+    rDeltaTDampingCoeff 	0.5;		//0.9
+    maxDeltaT         		0.001;
+}
+
+// Add stronger relaxation
+relaxationFactors
+{
+    fields
+    {
+        p               0.3;
+        rho             0.5;
+    }
+    equations
+    {
+        U               0.7;
+        e               0.5;
+        "(k|epsilon|omega)" 0.5;
+    }
+}
+
+// ************************************************************************* //
