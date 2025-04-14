@@ -16,53 +16,71 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-7
+10
 (
     inlet
     {
         type            patch;
-        nFaces          200;
-        startFace       47680;
+        nFaces          2;
+        startFace       20336;
     }
-    sym
+    outlet
     {
-        type            symmetry;
-        inGroups        1(symmetry);
-        nFaces          72;
-        startFace       47880;
+        type            patch;
+        nFaces          100;
+        startFace       20338;
     }
     wedge
     {
-        type            wall;
-        inGroups        1(wall);
-        nFaces          48;
-        startFace       47952;
+        type            patch;
+        nFaces          40;
+        startFace       20438;
     }
     top
     {
         type            patch;
-        nFaces          120;
-        startFace       48000;
+        nFaces          40;
+        startFace       20478;
+    }
+    frontCoarse
+    {
+        type            patch;
+        nFaces          60;
+        startFace       20518;
+    }
+    sideCoarse
+    {
+        type            patch;
+        nFaces          100;
+        startFace       20578;
+    }
+    symmetry
+    {
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          60;
+        startFace       20678;
     }
     back
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          24000;
-        startFace       48120;
+        nFaces          4000;
+        startFace       20738;
     }
     front
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          24000;
-        startFace       72120;
+        nFaces          10000;
+        startFace       24738;
     }
-    outlet
+    defaultFaces
     {
-        type            patch;
-        nFaces          200;
-        startFace       96120;
+        type            empty;
+        inGroups        1(empty);
+        nFaces          6846;
+        startFace       34738;
     }
 )
 
