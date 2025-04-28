@@ -3,20 +3,24 @@
 # Move to src folder
 cd src
 
-# Remove all existing solutions files in the base directory
-cd sonicFoam
-foamListTimes -rm
-cd ..
-
 # Define grid
 num_xcells=80
 num_ycells=130
 
-# Create all the different angle directories
-for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.25881904510252074 0.3420201433256687 0.39073112848927377 0.42261826174069944 0.49999999999999994
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+# M=1.5
+# Move to base directory ad remove old cases
+cd M1.5_base
+foamListTimes -rm
+cd ..
+# for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033
+for angle_vale in 0.08715574274765817 0.17364817766693033
     do 
-        foamCloneCase turbulenceTrial turbulence_angle_value_$angle_vale
-        cd turbulence_angle_value_$angle_vale
+        foamCloneCase M1.5_base M1.5_$angle_vale
+        cd M1.5_$angle_vale
         # Create the mesh
         yangle=$angle_vale num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
 
@@ -38,50 +42,92 @@ for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.258819
         # Create touch.case for paraview
         touch case.foam
 
+        # Move to results folder
+        mv -rf M1.5_$angle_vale ../results/M1.5_$angle_vale
+
         # Move back to the base directory
         cd ..
     done
 
-# # Convergence Analysis for Theta=20
-# # Create all the different angle directories
-# yangle=0.273 #0.364 # 0.182
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+# M=2.0
+# Move to base directory ad remove old cases
+cd M2.0_base
+foamListTimes -rm
+cd ..
+# for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.25881904510252074 0.3420201433256687 0.39073112848927377 0.42261826174069944 0.49999999999999994
+for angle_vale in 0.08715574274765817 0.3420201433256687
+    do 
+        foamCloneCase M2.0_base M2.0_$angle_vale
+        cd M2.0_$angle_vale
+        # Create the mesh
+        yangle=$angle_vale num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
 
-# # for num_xcells in 50 100 200
-# # Define corresponding arrays so values are paired by index
-# xcell_values=(50 100 200)
-# ycell_values=(82 163 325)
+        # Check mesh quality
+        checkMesh -allGeometry -allTopology > log.checkMesh
+        echo "✅ Mesh generation completed!"
 
-# # Loop through the indices
-# for i in {0..2}
-# do
-#     num_xcells=${xcell_values[$i]}
-#     num_ycells=${ycell_values[$i]}
-    
-#     foamCloneCase turbulenceTrial turbulence_convergence_${num_xcells}_${num_ycells}
-#     cd turbulence_convergence_${num_xcells}_${num_ycells}
+        # Run the solver
+        echo "Running sonicFoam..."
+        sonicFoam > log.solver
+        # Postprocessing 
+        sonicFoam -postProcess > log.postProcess
+        if [ $? -ne 0 ]; then
+            echo "❌ sonicFoam failed. Check log.solver for details."
+            exit 1
+        fi
+        echo "✅ Solver completed!"
 
-#     # Create the mesh
-#     yangle=$yangle num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
+        # Create touch.case for paraview
+        touch case.foam
 
-#     # Check mesh quality
-#     checkMesh -allGeometry -allTopology > log.checkMesh
-#     echo "✅ Mesh generation completed!"
+        # Move to results folder
+        mv -rf M2.0_$angle_vale ../results/M2.0_$angle_vale
 
-#     # Run the solver
-#     echo "Running sonicFoam..."
-#     sonicFoam > log.solver
-    # sonicFoam -postProcess > log.postProcess
-    
-#     if [ $? -ne 0 ]; then
-#         echo "❌ sonicFoam failed. Check log.solver for details."
-#         exit 1
-#     fi
-#     echo "✅ Solver completed!"
+        # Move back to the base directory
+        cd ..
+    done
 
-#     # Create touch.case for paraview
-#     touch case.foam
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+# M=2.5
+# Move to base directory ad remove old cases
+cd M2.5_base
+foamListTimes -rm
+cd ..
+for angle_vale in 0.08715574274765817 0.42261826174069944
+    do 
+        foamCloneCase M2.5_base M2.5_$angle_vale
+        cd M2.5_$angle_vale
+        # Create the mesh
+        yangle=$angle_vale num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
 
-#     # Move back to the base directory
-#     cd ..
-# done
+        # Check mesh quality
+        checkMesh -allGeometry -allTopology > log.checkMesh
+        echo "✅ Mesh generation completed!"
 
+        # Run the solver
+        echo "Running sonicFoam..."
+        sonicFoam > log.solver
+        # Postprocessing 
+        sonicFoam -postProcess > log.postProcess
+        if [ $? -ne 0 ]; then
+            echo "❌ sonicFoam failed. Check log.solver for details."
+            exit 1
+        fi
+        echo "✅ Solver completed!"
+
+        # Create touch.case for paraview
+        touch case.foam
+
+        # Move to results folder
+        mv -rf M2.5_$angle_vale ../results/M2.5_$angle_vale
+
+        # Move back to the base directory
+        cd ..
+    done
