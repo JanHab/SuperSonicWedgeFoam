@@ -43,7 +43,7 @@ for angle_vale in 0.08715574274765817 0.17364817766693033
         touch case.foam
 
         # Move to results folder
-        mv -rf M1.5_$angle_vale ../results/M1.5_$angle_vale
+        mv -f M1.5_$angle_vale ../results/M1.5_$angle_vale
 
         # Move back to the base directory
         cd ..
@@ -85,7 +85,7 @@ for angle_vale in 0.08715574274765817 0.3420201433256687
         touch case.foam
 
         # Move to results folder
-        mv -rf M2.0_$angle_vale ../results/M2.0_$angle_vale
+        mv -f M2.0_$angle_vale ../results/M2.0_$angle_vale
 
         # Move back to the base directory
         cd ..
@@ -126,7 +126,7 @@ for angle_vale in 0.08715574274765817 0.42261826174069944
         touch case.foam
 
         # Move to results folder
-        mv -rf M2.5_$angle_vale ../results/M2.5_$angle_vale
+        mv -f M2.5_$angle_vale ../results/M2.5_$angle_vale
 
         # Move back to the base directory
         cd ..
