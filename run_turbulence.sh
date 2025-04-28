@@ -13,7 +13,6 @@ num_xcells=80
 num_ycells=130
 
 # Create all the different angle directories
-# for angle_vale in 0.000 0.091 0.182 0.273 0.364 0.419 0.455 0.546
 for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.25881904510252074 0.3420201433256687 0.39073112848927377 0.42261826174069944 0.49999999999999994
     do 
         foamCloneCase turbulenceTrial turbulence_angle_value_$angle_vale

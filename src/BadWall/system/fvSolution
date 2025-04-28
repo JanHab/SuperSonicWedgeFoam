@@ -1,0 +1,129 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    "p.*"
+    // {
+    //     solver          smoothSolver;
+    //     smoother        symGaussSeidel;
+    //     preconditioner  AMG;
+    //     tolerance       1e-4;
+    //     relTol          1e-4;
+    //     // solver          GAMG;
+    //     // smoother        GaussSeidel;
+    //     // nPreSweeps      0;
+    //     // nPostSweeps     2;
+    //     // cacheAgglomeration true;
+    //     // tolerance       1e-4;
+    //     // relTol          1e-4;
+    // }
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-06;
+        relTol          0.01;
+	minIter 	2;
+    }
+
+    "(U|e).*"
+    {
+        $p;
+        tolerance       1e-5;
+        relTol          1e-4;
+    }
+
+    "rho.*"
+    {
+        solver          PCG;
+        preconditioner  AMG;//AMG; //DIC;
+        tolerance       1e-4;//1e-05;
+        relTol          1e-4;//0;
+    }
+}
+
+// PIMPLE
+// {
+//     nOuterCorrectors 1;//1; // how often the pressure is coupled back to the momentum equation
+//     nCorrectors      1;//1; // how often the pressure correction is calculated
+//     nNonOrthogonalCorrectors 0;//0; // 1 // how often the non-orthogonal correction is calculated
+
+//     // Add these for high Courant number cases, not important for supersonic
+//     momentumPredictor   no;//no;//yes;
+//     transonic           no;//no;//yes;    // Important for supersonic flow
+
+//     // Optional: Consider adding these for more stability
+//     // consistent        yes;
+//     consistent        yes;
+//     // nOuterIterations 2;
+//     nOuterIterations 2;
+//     residualControl
+//     {
+//         U
+//         {
+//             tolerance       1e-4;
+//             relTol          1e-4;//0;
+//         }
+//         p 
+//         {
+//             tolerance       1e-4;//5e-04;
+//             relTol          1e-4;//0;
+//         }
+//     }
+// }
+PIMPLE
+{
+    momentumPredictor 		yes;
+    consistent			yes;
+
+    nOuterCorrectors 		2;	//1-2-2
+    nCorrectors    	 	3;	//3-3-2
+    nNonOrthogonalCorrectors 	2;	//1-1-1
+
+    transonic 			yes;
+
+    maxCo             		0.5;		//0.9 (D)
+    rDeltaTSmoothingCoeff 	0.1;		//0.1
+    rDeltaTDampingCoeff 	0.5;		//0.9
+    maxDeltaT         		0.001;
+
+/*
+    //Old way - Now in fvConstraints
+    pMin          10000;
+    pMax          1000000;
+    //pMinFactor      0.5;
+    //pMaxFactor      2.0;
+*/
+
+}
+
+// Add stronger relaxation
+relaxationFactors
+{
+    fields
+    {
+        p               0.3;
+        rho             0.5;
+    }
+    equations
+    {
+        U               0.7;
+        e               0.5;
+        "(k|epsilon|omega)" 0.5;
+    }
+}
+
+// ************************************************************************* //

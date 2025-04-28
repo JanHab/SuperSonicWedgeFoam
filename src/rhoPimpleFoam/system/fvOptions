@@ -1,0 +1,11 @@
+limitTemperature
+{
+    type limitTemperature;
+    active true;
+    limitTemperatureCoeffs
+    {
+        selectionMode all;
+        Tmin 200;
+        Tmax 400;
+    }
+} 

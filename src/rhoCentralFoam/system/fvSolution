@@ -1,0 +1,75 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+
+solvers
+{
+    "p"
+    {
+        solver          PBiCGStab;
+        preconditioner
+        {
+            type      GAMG;
+            smoother  GaussSeidel;
+        }
+        tolerance       1e-06;
+        relTol          1e-4;//0.01;
+        minIter         2;
+    }
+    
+    // "(U|e)"
+    "(U|e|rhoU|rhoE)"
+    {
+        solver          PDG;//smoothSolver;
+        smoother        GaussSeidel;
+        tolerance       1e-06;
+        relTol          1e-4;//0.01;
+    }
+
+    
+    // "rho|rhoU|rhoE"
+    "rho"
+    {
+        solver          PCG;
+        preconditioner
+        {
+            type      AMG;
+        }
+        tolerance       1e-4;
+        relTol          1e-4;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor       yes;
+    consistent              yes;
+    nOuterCorrectors        2;
+    nCorrectors             3;
+    nNonOrthogonalCorrectors 2;
+    transonic               yes;
+    maxCo                   0.5;
+    rDeltaTSmoothingCoeff   0.1;
+    rDeltaTDampingCoeff     0.5;
+    maxDeltaT               0.001;
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p   0.3;
+        rho 0.5;
+    }
+    equations
+    {
+        U                   0.7;
+        e                   0.5;
+        "(k|epsilon|omega)" 0.5;
+    }
+}
+

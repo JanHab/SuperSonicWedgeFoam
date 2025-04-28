@@ -1,0 +1,25 @@
+// system/surfaceFeatureExtractDict
+
+geometry
+{
+    domain
+    {
+        type triSurfaceMesh;
+        file "domain.stl";  // Make sure this path is correct
+    }
+}
+
+extractFromGeometry
+{
+    method edge;
+}
+
+refinementRegions
+{
+    wedge
+    {
+        mode inside;
+        levels (5 6);
+    }
+}
+

@@ -1,0 +1,80 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+/* 
+Mach number = 2
+M = u / c
+c: speed of sound
+c = 346.13 m/s for air at 25°C
+u = 2 * 346.13 = 692.26 m/s
+30°C = 347.336 m/s
+*/ 
+
+// u   664;
+u   694.73;//692.26;
+// u 1200;
+
+dimensions      [0 1 -1 0 0 0 0];
+
+// internalField   uniform ($u 0 0);
+internalField   uniform ($u 0 0);
+
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform ($u 0 0);
+    }
+
+    sym
+    {
+        type            symmetry;
+    }
+
+    wedge
+    {
+        type            slip; // as viscous wall
+    }
+
+    top
+    {
+        // freeStream to make it converge towards the stationary solution
+        type            freestream;
+        freestreamValue uniform ($u 0 0);
+    }
+
+    back
+    {
+        type            empty;
+    }
+
+    front
+    {
+        type            empty;
+    }
+
+    outlet
+    { 
+        // type            zeroGradient;
+        type            inletOutlet;
+        inletValue      uniform ($u 0 0);
+        value           uniform ($u 0 0);
+    }
+}
+
+
+// ************************************************************************* //
