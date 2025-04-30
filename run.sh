@@ -4,8 +4,8 @@
 cd src
 
 # Define grid
-num_xcells=80
-num_ycells=130
+num_xcells=200 #80
+num_ycells=300 #130
 
 ##########################################################################################
 ##########################################################################################
@@ -16,8 +16,8 @@ num_ycells=130
 cd M1.5_base
 foamListTimes -rm
 cd ..
-# for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033
-for angle_vale in 0.08715574274765817 0.17364817766693033
+for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033
+# for angle_vale in 0.08715574274765817 0.17364817766693033
     do 
         foamCloneCase M1.5_base M1.5_$angle_vale
         cd M1.5_$angle_vale
@@ -42,11 +42,11 @@ for angle_vale in 0.08715574274765817 0.17364817766693033
         # Create touch.case for paraview
         touch case.foam
 
-        # Move to results folder
-        mv -f M1.5_$angle_vale ../results/M1.5_$angle_vale
-
         # Move back to the base directory
         cd ..
+
+        # Move to results folder
+        mv -f M1.5_$angle_vale ../results/M1.5_$angle_vale
     done
 
 ##########################################################################################
@@ -58,8 +58,8 @@ for angle_vale in 0.08715574274765817 0.17364817766693033
 cd M2.0_base
 foamListTimes -rm
 cd ..
-# for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.25881904510252074 0.3420201433256687 0.39073112848927377 0.42261826174069944 0.49999999999999994
-for angle_vale in 0.08715574274765817 0.3420201433256687
+for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.25881904510252074 0.3420201433256687 0.39073112848927377 0.42261826174069944 0.49999999999999994
+# for angle_vale in 0.08715574274765817 0.3420201433256687
     do 
         foamCloneCase M2.0_base M2.0_$angle_vale
         cd M2.0_$angle_vale
@@ -84,11 +84,11 @@ for angle_vale in 0.08715574274765817 0.3420201433256687
         # Create touch.case for paraview
         touch case.foam
 
-        # Move to results folder
-        mv -f M2.0_$angle_vale ../results/M2.0_$angle_vale
-
         # Move back to the base directory
         cd ..
+
+        # Move to results folder
+        mv -f M2.0_$angle_vale ../results/M2.0_$angle_vale
     done
 
 ##########################################################################################
@@ -100,7 +100,7 @@ for angle_vale in 0.08715574274765817 0.3420201433256687
 cd M2.5_base
 foamListTimes -rm
 cd ..
-for angle_vale in 0.08715574274765817 0.42261826174069944
+for angle_vale in 0.00000000000 0.08715574274765817 0.17364817766693033 0.25881904510252074 0.3420201433256687 0.39073112848927377 0.42261826174069944 0.49999999999999994
     do 
         foamCloneCase M2.5_base M2.5_$angle_vale
         cd M2.5_$angle_vale
@@ -125,9 +125,9 @@ for angle_vale in 0.08715574274765817 0.42261826174069944
         # Create touch.case for paraview
         touch case.foam
 
-        # Move to results folder
-        mv -f M2.5_$angle_vale ../results/M2.5_$angle_vale
-
         # Move back to the base directory
         cd ..
+
+        # Move to results folder
+        mv -f M2.5_$angle_vale ../results/M2.5_$angle_vale
     done
