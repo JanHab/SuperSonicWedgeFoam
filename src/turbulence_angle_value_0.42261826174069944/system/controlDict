@@ -22,7 +22,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.25;
+endTime         0.05;
 // adaptive time step
 deltaT          1e-4;
 adjustTimeStep  no;
