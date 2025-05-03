@@ -70,13 +70,13 @@ solvers
 PIMPLE
 {
     momentumPredictor 		yes;
-    consistent			yes;
+    consistent			    yes;
 
-    nOuterCorrectors 		2;	//1-2-2
-    nCorrectors    	 	3;	//3-3-2
+    nOuterCorrectors 		    2;	//1-2-2
+    nCorrectors    	 	        3;	//3-3-2
     nNonOrthogonalCorrectors 	2;	//1-1-1
 
-    transonic 			yes;
+    transonic 			    no; //yes;
 
     maxCo             		0.5;		//0.9 (D)
     rDeltaTSmoothingCoeff 	0.1;		//0.1

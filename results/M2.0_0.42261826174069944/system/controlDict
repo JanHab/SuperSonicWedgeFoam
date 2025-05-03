@@ -22,9 +22,9 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         0.25;// #! 0.25;
+endTime         0.25;
 // adaptive time step
-deltaT          1e-4;//0.2e-4;//0.5e-4;
+deltaT          0.5e-4;
 adjustTimeStep  no;
 maxCo           10; // Your target maximum Courant
 maxDeltaT       1;
