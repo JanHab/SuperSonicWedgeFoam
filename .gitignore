@@ -31,3 +31,6 @@ log.*
 # README html versions from quarto
 *README_files*
 README.html
+
+*.DS_Store
+DS_Store
