@@ -2,100 +2,68 @@
 
 Reproducability repository for the course project "Investigate supersonic flow over a wedge with varying angle of attack".
 
-The [OpenFoam](https://www.openfoam.com/) CFD software can be used to reproduce all the results. For the work, version 2406 was used.
+The [OpenFoam](https://www.openfoam.com/) CFD software can be used to reproduce all the results. For this work, version 2406 was used.
 
 ## Physical Background
 
-ToDo: Add some short description
-
-- Wedge flow
-- Supersonic (mach number etc.)
-- compressible Navier-Stokes-Fourier
+- Supersonic flow around a wedge creates shocks (discontinuities) around the geometry
+- The shocks increase for increasing inflow velocities and wedge angles
+- Compressible Navier-Stokes-Fourier equations are solved
+- Pressure-based `sonicFoam` solver
 
 ## Main Features
 
 - Automatic grid generation for different angles of wedge
-- Intuitive implementation in openfoam
-- Easy to use analysis with python
-    - Calls paraview
-    - Cutplots
-    - Lineplots
-    - Comparison to analytical results
-    - Residuals
-    - Grid convergence
+- Intuitive implementation in OpenFOAM
+- Easy to use analysis with python (calling ParaView API)
+  - Cutplots
+  - Lineplots
+  - Comparison to analytical results
+  - Residuals
 - Script to run different geometries
-- Grid convergence
-- Investigation of residuals
+- Analysis with analytical findings
 
-## Contact
+## Tutorial
 
-- Adrian Elias Haugjord
-- Daniel Eric Offer
-- Jan Habscheid
+There are two options, either running the `run.sh` script to run each simulation or generating your own simulation with your own mesh and wedge angle.
 
-------------
-------------
-------------
-------------
-------------
-
-# Our Personal Notes -> to be removed
-
-## Settings
-
-Solver: `sonicFoam`
-
-Remove solver files: `foamListTimes -rm`
-
-- To get the density run with post processing
+For the `run.sh` simply run:
 
 ```bash
-sonicFoam -postProcess
+./run.sh
 ```
 
-## Tricky
-
-Be careful with the "time-steps"
-It is transient and the Courant number has to be small
-
-$$
-C = a \Delta t / \Delta x
-$$
-
-## Similar Paper
-
-- [CFD Analysis for supersonic flow  over a wedge](https://ijariie.com/AdminUploadPdf/CFD_ANALYSIS_FOR_SUPERSONIC_FLOW_OVER_A_WEDGE_ijariie5053.pdf)
-- [Optimization of Two-dimensional WedgeFlow Fieldat Supersonic Mach Number](https://www.akademiabaru.com/submit/index.php/cfdl/article/view/3165/2198)
-- [COMPUTATIONAL ANALYSIS OF SUPERSONIC FLOW AROUND A WEDGE AND A CYLINDER USING BUILDING-CUBE METHOD](https://www.icas.org/icas_archive/ICAS2022/data/papers/ICAS2022_0416_paper.pdf)
-- [Supersonic Flow Over a Wedge and a Cone](https://innovationspace.ansys.com/courses/wp-content/uploads/sites/5/2020/12/Wedge-vs-Cone.pdf)
-- [Supersonic Flow onto Solid Wedges, Multidimensional Shock Waves and Free Boundary Problems](https://arxiv.org/abs/1703.03997)
-- [Presentation: Supersonic flow past a wedge](https://www.wolfdynamics.com/wiki/tut_2D_supersonic_wedge.pdf)
-- [Tutorial: Supersonic flow past a wedge](https://www.wolfdynamics.com/tutorials.html?id=130)
-- [Estimating density, velocity, and pressure fields in supersonic flows using physics-informed BOS](https://link.springer.com/article/10.1007/s00348-022-03554-y)
-
-## Running Script
+maybe you need to give certain rights to the script with:
 
 ```bash
 chmod +x run.sh
-./run.sh <angle> <number_xcells> <number_ycells>
 ```
 
-## Git CheatSheet
-
-To add file/changes of file to git. Replace file with a dot (.) to add all changes
+Alternatively define your wedge angle (in this tutorial 20°) and grid settings (number of elements in x and y direction) by yourself and use one of the base cases in `src`.
 
 ```bash
-git add file
+num_xcells=200
+num_ycells=300
+yangle=0.3420201433256687
 ```
 
-To commit the changes with a meaningful commit message (in one sentence/short phrase what have you changed)
+Create and check the mesh.
 
 ```bash
-git commit -m "commit message"
+yangle=$angle_vale num_xcells=$num_xcells num_ycells=$num_ycells blockMesh > log.blockMesh
+checkMesh -allGeometry -allTopology > log.checkMesh
 ```
 
-And finally, push the changes to the remote git (the online version)
+Run `sonicFoam` solver and postprocess for density and create touch.case file for ParaView.
 
 ```bash
-git push
+sonicFoam > log.solver
+sonicFoam -postProcess > log.postProcess
+touch case.foam
 ```
+
+## Contact
+
+- Jan Habscheid
+- Adrian Elias Haugjord
+- Daniel Eric Offer
